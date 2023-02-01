@@ -1,0 +1,70 @@
+mysql> create database stu;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| dbms_slotc         |
+| mysql              |
+| performance_schema |
+| stu                |
+| student            |
+| student1           |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use stu;
+Database changed
+mysql> create table stu(regno int(10),mobileno int(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc stu;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| regno    | int(10) | YES  |     | NULL    |       |
+| mobileno | int(10) | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> use facul;
+ERROR 1049 (42000): Unknown database 'facul'
+mysql> create table faculty1(FacNo int(10),Gender char(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc faculty1;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| FacNo  | int(10)  | YES  |     | NULL    |       |
+| Gender | char(10) | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> create table department(deptNo int(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc department;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| deptNo | int(10) | YES  |     | NULL    |       |
++--------+---------+------+-----+---------+-------+
+1 row in set (0.01 sec)
+
+mysql> create table course(courseNo int(10), SemNo int(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc course;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| courseNo | int(10) | YES  |     | NULL    |       |
+| SemNo    | int(10) | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql>
