@@ -1,70 +1,69 @@
-mysql> create database stu;
-Query OK, 1 row affected (0.00 sec)
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| dbms_slotc         |
-| mysql              |
-| performance_schema |
-| stu                |
-| student            |
-| student1           |
-| test               |
-+--------------------+
-8 rows in set (0.00 sec)
-
-mysql> use stu;
+mysql> use sse;
 Database changed
-mysql> create table stu(regno int(10),mobileno int(10));
+mysql> create table stud(regno int,mobileno int(10));
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> desc stu;
+mysql> alter table stud add primary key(regno);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stud;
 +----------+---------+------+-----+---------+-------+
 | Field    | Type    | Null | Key | Default | Extra |
 +----------+---------+------+-----+---------+-------+
-| regno    | int(10) | YES  |     | NULL    |       |
+| regno    | int(11) | NO   | PRI | 0       |       |
 | mobileno | int(10) | YES  |     | NULL    |       |
 +----------+---------+------+-----+---------+-------+
-2 rows in set (0.01 sec)
+2 rows in set (0.02 sec)
 
-mysql> use facul;
-ERROR 1049 (42000): Unknown database 'facul'
-mysql> create table faculty1(FacNo int(10),Gender char(10));
-Query OK, 0 rows affected (0.01 sec)
+mysql> create table fac(FacNo int, Gender varchar(1));
+Query OK, 0 rows affected (0.02 sec)
 
-mysql> desc faculty1;
-+--------+----------+------+-----+---------+-------+
-| Field  | Type     | Null | Key | Default | Extra |
-+--------+----------+------+-----+---------+-------+
-| FacNo  | int(10)  | YES  |     | NULL    |       |
-| Gender | char(10) | YES  |     | NULL    |       |
-+--------+----------+------+-----+---------+-------+
-2 rows in set (0.01 sec)
+mysql> alter table fac add primary key(FacNo);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> create table department(deptNo int(10));
-Query OK, 0 rows affected (0.01 sec)
+mysql> alter table fac add check(Gender=M or F);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> desc department;
+mysql> desc fac;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| FacNo  | int(11)    | NO   | PRI | 0       |       |
+| Gender | varchar(1) | YES  |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+mysql> create table dep(deptNo int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> alter table dep add primary key(deptNo);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dep;
 +--------+---------+------+-----+---------+-------+
 | Field  | Type    | Null | Key | Default | Extra |
 +--------+---------+------+-----+---------+-------+
-| deptNo | int(10) | YES  |     | NULL    |       |
+| deptNo | int(11) | NO   | PRI | 0       |       |
 +--------+---------+------+-----+---------+-------+
-1 row in set (0.01 sec)
+1 row in set (0.02 sec)
 
-mysql> create table course(courseNo int(10), SemNo int(10));
+mysql> create table cou(CourseNo int, Semno int);
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> desc course;
+mysql> alter table cou add primary key(CourseNo);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc cou;
 +----------+---------+------+-----+---------+-------+
 | Field    | Type    | Null | Key | Default | Extra |
 +----------+---------+------+-----+---------+-------+
-| courseNo | int(10) | YES  |     | NULL    |       |
-| SemNo    | int(10) | YES  |     | NULL    |       |
+| CourseNo | int(11) | NO   | PRI | 0       |       |
+| Semno    | int(11) | YES  |     | NULL    |       |
 +----------+---------+------+-----+---------+-------+
 2 rows in set (0.01 sec)
 
-mysql>
