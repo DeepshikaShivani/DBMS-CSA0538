@@ -1,101 +1,170 @@
-#DDL COMMANDS
+#DDL COMMANDS- CREATE,ALTER,DROP
 
-mysql> create database student;
+
+mysql> create database saveetha;
 Query OK, 1 row affected (0.00 sec)
 
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| dbms_slotc         |
-| mysql              |
-| performance_schema |
-| student            |
-| student1           |
-| test               |
-+--------------------+
-7 rows in set (0.00 sec)
-
-mysql> use student;
+mysql> use saveetha;
 Database changed
-mysql> create table student(regno int(10),name char(20),gender char(10),DOB int(10),mobileno int(10),city char(20));
-Query OK, 0 rows affected (0.01 sec)
+mysql> create table faculties(Facid int(20),Facname varchar(20),Facdept varchar(20),salary int(10));
+Query OK, 0 rows affected (0.00 sec)
 
-mysql> desc student;
-+----------+----------+------+-----+---------+-------+
-| Field    | Type     | Null | Key | Default | Extra |
-+----------+----------+------+-----+---------+-------+
-| regno    | int(10)  | YES  |     | NULL    |       |
-| name     | char(20) | YES  |     | NULL    |       |
-| gender   | char(10) | YES  |     | NULL    |       |
-| DOB      | int(10)  | YES  |     | NULL    |       |
-| mobileno | int(10)  | YES  |     | NULL    |       |
-| city     | char(20) | YES  |     | NULL    |       |
-+----------+----------+------+-----+---------+-------+
-6 rows in set (0.01 sec)
+mysql> desc faculties;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Facid   | int(20)     | YES  |     | NULL    |       |
+| Facname | varchar(20) | YES  |     | NULL    |       |
+| Facdept | varchar(20) | YES  |     | NULL    |       |
+| salary  | int(10)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
 
-mysql> create table faculty1(facNo int(10),name char(20),gender char(10),DOB int(10),mobileno int(10),DOJ int(10));
-Query OK, 0 rows affected (0.01 sec)
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| faculties          |
++--------------------+
+1 row in set (0.00 sec)
 
-mysql> desc faculty1;
-+----------+----------+------+-----+---------+-------+
-| Field    | Type     | Null | Key | Default | Extra |
-+----------+----------+------+-----+---------+-------+
-| facNo    | int(10)  | YES  |     | NULL    |       |
-| name     | char(20) | YES  |     | NULL    |       |
-| gender   | char(10) | YES  |     | NULL    |       |
-| DOB      | int(10)  | YES  |     | NULL    |       |
-| mobileno | int(10)  | YES  |     | NULL    |       |
-| DOJ      | int(10)  | YES  |     | NULL    |       |
-+----------+----------+------+-----+---------+-------+
-6 rows in set (0.02 sec)
+mysql> create table students(Rollno int(10), name varchar(10),Gender varchar(1),DOB varchar(10),mobileno int(10),city varchar(20),District varchar(20),dept varchar(5));
+Query OK, 0 rows affected (0.00 sec)
 
-mysql> create table department(deptNo int(10),deptname char(20),depthead char(10));
-Query OK, 0 rows affected (0.01 sec)
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Rollno   | int(10)     | YES  |     | NULL    |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Gender   | varchar(1)  | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(10)     | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| District | varchar(20) | YES  |     | NULL    |       |
+| dept     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.03 sec)
 
-mysql> desc department;
-+----------+----------+------+-----+---------+-------+
-| Field    | Type     | Null | Key | Default | Extra |
-+----------+----------+------+-----+---------+-------+
-| deptNo   | int(10)  | YES  |     | NULL    |       |
-| deptname | char(20) | YES  |     | NULL    |       |
-| depthead | char(10) | YES  |     | NULL    |       |
-+----------+----------+------+-----+---------+-------+
-3 rows in set (0.01 sec)
+mysql> create table studepartment(Deptid int(20),Deptname varchar(20),Rollno int(10));
+Query OK, 0 rows affected (0.00 sec)
 
-mysql> create table course(courseNo int(10),coursedesc char(20),coursetype char(10),semno int(10),hallno int(10),facno int(10));
-Query OK, 0 rows affected (0.01 sec)
+mysql> desc studepartment;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptid   | int(20)     | YES  |     | NULL    |       |
+| Deptname | varchar(20) | YES  |     | NULL    |       |
+| Rollno   | int(10)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
 
-mysql> desc course;
-+------------+----------+------+-----+---------+-------+
-| Field      | Type     | Null | Key | Default | Extra |
-+------------+----------+------+-----+---------+-------+
-| courseNo   | int(10)  | YES  |     | NULL    |       |
-| coursedesc | char(20) | YES  |     | NULL    |       |
-| coursetype | char(10) | YES  |     | NULL    |       |
-| semno      | int(10)  | YES  |     | NULL    |       |
-| hallno     | int(10)  | YES  |     | NULL    |       |
-| facno      | int(10)  | YES  |     | NULL    |       |
-+------------+----------+------+-----+---------+-------+
-6 rows in set (0.02 sec)
-
-mysql> alter table faculty1 add dept char(10);
+mysql> create table employees(Empid int,Empname varchar(20),Salary int(5),Mobileno int(10));
 Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc employees;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Empid    | int(11)     | YES  |     | NULL    |       |
+| Empname  | varchar(20) | YES  |     | NULL    |       |
+| Salary   | int(5)      | YES  |     | NULL    |       |
+| Mobileno | int(10)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table empdept(Empid int, Empdeptname varchar(10),Empdeptid int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc empdept;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Empid       | int(11)     | YES  |     | NULL    |       |
+| Empdeptname | varchar(10) | YES  |     | NULL    |       |
+| Empdeptid   | int(11)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> insert into faculties values(1,"Deepshika","CSE",25000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculties values(2,"Lavanya","AIDS",20000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculties values(3,"Harini","IT",20001);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into faculties values(4,"Dharika","BioTech",20002);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into faculties values(5,"Tejaswini","Bio",20003);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from faculties;
++-------+-----------+---------+--------+
+| Facid | Facname   | Facdept | salary |
++-------+-----------+---------+--------+
+|     1 | Deepshika | CSE     |  25000 |
+|     2 | Lavanya   | AIDS    |  20000 |
+|     3 | Harini    | IT      |  20001 |
+|     4 | Dharika   | BioTech |  20002 |
+|     5 | Tejaswini | Bio     |  20003 |
++-------+-----------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| empdept            |
+| employees          |
+| faculties          |
+| students           |
+| studepartment      |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employees add Address varchar(20);
+Query OK, 0 rows affected (0.01 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> desc faculty1;
-+----------+----------+------+-----+---------+-------+
-| Field    | Type     | Null | Key | Default | Extra |
-+----------+----------+------+-----+---------+-------+
-| facNo    | int(10)  | YES  |     | NULL    |       |
-| name     | char(20) | YES  |     | NULL    |       |
-| gender   | char(10) | YES  |     | NULL    |       |
-| DOB      | int(10)  | YES  |     | NULL    |       |
-| mobileno | int(10)  | YES  |     | NULL    |       |
-| DOJ      | int(10)  | YES  |     | NULL    |       |
-| dept     | char(10) | YES  |     | NULL    |       |
-+----------+----------+------+-----+---------+-------+
-7 rows in set (0.02 sec)
+mysql> desc employees;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Empid    | int(11)     | YES  |     | NULL    |       |
+| Empname  | varchar(20) | YES  |     | NULL    |       |
+| Salary   | int(5)      | YES  |     | NULL    |       |
+| Mobileno | int(10)     | YES  |     | NULL    |       |
+| Address  | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| empdept            |
+| employees          |
+| faculties          |
+| students           |
+| studepartment      |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> drop table faculties;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| empdept            |
+| employees          |
+| students           |
+| studepartment      |
++--------------------+
+4 rows in set (0.00 sec)
 
 mysql>
