@@ -1,69 +1,110 @@
-mysql> use sse;
+mysql> use saveetha;
 Database changed
-mysql> create table stud(regno int,mobileno int(10));
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| empdept            |
+| employees          |
+| students           |
+| studepartment      |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Rollno   | int(10)     | YES  |     | NULL    |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Gender   | varchar(1)  | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(10)     | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| District | varchar(20) | YES  |     | NULL    |       |
+| dept     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.03 sec)
+
+mysql> desc studepartment;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptid   | int(20)     | YES  |     | NULL    |       |
+| Deptname | varchar(20) | YES  |     | NULL    |       |
+| Rollno   | int(10)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> alter table students add primary key(Rollno);
 Query OK, 0 rows affected (0.01 sec)
-
-mysql> alter table stud add primary key(regno);
-Query OK, 0 rows affected (0.03 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> desc stud;
-+----------+---------+------+-----+---------+-------+
-| Field    | Type    | Null | Key | Default | Extra |
-+----------+---------+------+-----+---------+-------+
-| regno    | int(11) | NO   | PRI | 0       |       |
-| mobileno | int(10) | YES  |     | NULL    |       |
-+----------+---------+------+-----+---------+-------+
-2 rows in set (0.02 sec)
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Rollno   | int(10)     | NO   | PRI | 0       |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Gender   | varchar(1)  | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(10)     | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| District | varchar(20) | YES  |     | NULL    |       |
+| dept     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
 
-mysql> create table fac(FacNo int, Gender varchar(1));
-Query OK, 0 rows affected (0.02 sec)
-
-mysql> alter table fac add primary key(FacNo);
-Query OK, 0 rows affected (0.03 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> alter table fac add check(Gender=M or F);
+mysql> alter table studepartment add foreign key(Rollno) references students(Rollno);
 Query OK, 0 rows affected (0.02 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> desc fac;
-+--------+------------+------+-----+---------+-------+
-| Field  | Type       | Null | Key | Default | Extra |
-+--------+------------+------+-----+---------+-------+
-| FacNo  | int(11)    | NO   | PRI | 0       |       |
-| Gender | varchar(1) | YES  |     | NULL    |       |
-+--------+------------+------+-----+---------+-------+
-2 rows in set (0.02 sec)
+mysql> desc studepartment;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptid   | int(20)     | YES  |     | NULL    |       |
+| Deptname | varchar(20) | YES  |     | NULL    |       |
+| Rollno   | int(10)     | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
 
-mysql> create table dep(deptNo int);
-Query OK, 0 rows affected (0.02 sec)
-
-mysql> alter table dep add primary key(deptNo);
-Query OK, 0 rows affected (0.03 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> desc dep;
-+--------+---------+------+-----+---------+-------+
-| Field  | Type    | Null | Key | Default | Extra |
-+--------+---------+------+-----+---------+-------+
-| deptNo | int(11) | NO   | PRI | 0       |       |
-+--------+---------+------+-----+---------+-------+
-1 row in set (0.02 sec)
-
-mysql> create table cou(CourseNo int, Semno int);
+mysql> alter table students add unique(Rollno);
 Query OK, 0 rows affected (0.01 sec)
-
-mysql> alter table cou add primary key(CourseNo);
-Query OK, 0 rows affected (0.03 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> desc cou;
-+----------+---------+------+-----+---------+-------+
-| Field    | Type    | Null | Key | Default | Extra |
-+----------+---------+------+-----+---------+-------+
-| CourseNo | int(11) | NO   | PRI | 0       |       |
-| Semno    | int(11) | YES  |     | NULL    |       |
-+----------+---------+------+-----+---------+-------+
-2 rows in set (0.01 sec)
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Rollno   | int(10)     | NO   | PRI | 0       |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Gender   | varchar(1)  | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(10)     | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| District | varchar(20) | YES  |     | NULL    |       |
+| dept     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
 
+mysql> alter table students add check(age>=15);
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Rollno   | int(10)     | NO   | PRI | 0       |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Gender   | varchar(1)  | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(10)     | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| District | varchar(20) | YES  |     | NULL    |       |
+| dept     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql>
