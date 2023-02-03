@@ -1,0 +1,129 @@
+mysql> select*from mentees;
++-----------+-----------+------+---------+------------+-------+---------+
+| Regno     | Name      | Dept | Address | Fathername | Marks | Subject |
++-----------+-----------+------+---------+------------+-------+---------+
+| 192224050 | Deepshika | IT   | Ongole  | Kalyan     |    91 | PDSD    |
+| 192224039 | Lavanya   | CSE  | Ongole  | Srinivas   |    99 | DBMS    |
+| 192222019 | Dharika   | Bio  | Hyd     | Uncle      |    80 | BioEvs  |
+| 192224032 | Harini    | CSE  | BZA     | Uncle      |    95 | DBMS    |
++-----------+-----------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create table mdept(Deptid int(10),Deptname varchar(20),Rollno int(10));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into mdept values(1,"CSE",192224050);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into mdept values(2,"IT",192224039);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mdept values(3,"Bio",192224032);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> update mdept set Deptid=3 where Rollno=192224050;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mdept;
++--------+----------+-----------+
+| Deptid | Deptname | Rollno    |
++--------+----------+-----------+
+|      3 | CSE      | 192224050 |
+|      2 | IT       | 192224039 |
+|      3 | Bio      | 192224032 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update mdept set Deptname="ECE" where Rollno=192224032;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mdept;
++--------+----------+-----------+
+| Deptid | Deptname | Rollno    |
++--------+----------+-----------+
+|      3 | CSE      | 192224050 |
+|      2 | IT       | 192224039 |
+|      3 | ECE      | 192224032 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select Deptid,Deptname from mdept,mentees where mentees.Regno=mdept.Rollno;
++--------+----------+
+| Deptid | Deptname |
++--------+----------+
+|      3 | CSE      |
+|      2 | IT       |
+|      3 | ECE      |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql>  select Deptid,Deptname,Rollno from mdept,mentees where mentees.Regno=mdept.Rollno;
++--------+----------+-----------+
+| Deptid | Deptname | Rollno    |
++--------+----------+-----------+
+|      3 | CSE      | 192224050 |
+|      2 | IT       | 192224039 |
+|      3 | ECE      | 192224032 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select Name, Deptid,Deptname,Rollno from mdept m,mentees m1 where m1.Regno=m.Rollno;
++-----------+--------+----------+-----------+
+| Name      | Deptid | Deptname | Rollno    |
++-----------+--------+----------+-----------+
+| Deepshika |      3 | CSE      | 192224050 |
+| Lavanya   |      2 | IT       | 192224039 |
+| Harini    |      3 | ECE      | 192224032 |
++-----------+--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select Name,Dept, Deptid,Deptname,Rollno from mdept,mentees where mentees.Regno=mdept.Rollno;
++-----------+------+--------+----------+-----------+
+| Name      | Dept | Deptid | Deptname | Rollno    |
++-----------+------+--------+----------+-----------+
+| Deepshika | IT   |      3 | CSE      | 192224050 |
+| Lavanya   | CSE  |      2 | IT       | 192224039 |
+| Harini    | CSE  |      3 | ECE      | 192224032 |
++-----------+------+--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select Rollno,Deptname,Name,Address from mdept left outer join mentees on mdept.Rollno=mentees.Regno;
++-----------+----------+-----------+---------+
+| Rollno    | Deptname | Name      | Address |
++-----------+----------+-----------+---------+
+| 192224050 | CSE      | Deepshika | Ongole  |
+| 192224039 | IT       | Lavanya   | Ongole  |
+| 192224032 | ECE      | Harini    | BZA     |
++-----------+----------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select Rollno,Deptname,Name,Address from mdept right outer join mentees on mdept.Rollno=mentees.Regno;
++-----------+----------+-----------+---------+
+| Rollno    | Deptname | Name      | Address |
++-----------+----------+-----------+---------+
+| 192224050 | CSE      | Deepshika | Ongole  |
+| 192224039 | IT       | Lavanya   | Ongole  |
+|      NULL | NULL     | Dharika   | Hyd     |
+| 192224032 | ECE      | Harini    | BZA     |
++-----------+----------+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> insert into mdept values(4,"COM",192224074);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mdept values(5,"EEE",192224075);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select Rollno,Deptname,Name,Address from mdept right outer join mentees on mdept.Rollno=mentees.Regno;
++-----------+----------+-----------+---------+
+| Rollno    | Deptname | Name      | Address |
++-----------+----------+-----------+---------+
+| 192224050 | CSE      | Deepshika | Ongole  |
+| 192224039 | IT       | Lavanya   | Ongole  |
+|      NULL | NULL     | Dharika   | Hyd     |
+| 192224032 | ECE      | Harini    | BZA     |
++-----------+----------+-----------+---------+
+4 rows in set (0.00 sec)
+
