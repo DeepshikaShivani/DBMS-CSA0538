@@ -1,0 +1,54 @@
+mysql> use saveetha;
+Database changed
+mysql> select*from mentees;
++-----------+-----------+------+---------+------------+-------+---------+
+| Regno     | Name      | Dept | Address | Fathername | Marks | Subject |
++-----------+-----------+------+---------+------------+-------+---------+
+| 192224050 | Deepshika | IT   | Ongole  | Kalyan     |    91 | PDSD    |
+| 192224039 | Lavanya   | CSE  | Ongole  | Srinivas   |    99 | DBMS    |
+| 192222019 | Dharika   | Bio  | Hyd     | Uncle      |    80 | BioEvs  |
+| 192224032 | Harini    | CSE  | BZA     | Uncle      |    95 | DBMS    |
++-----------+-----------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees order by Name;
++-----------+-----------+------+---------+------------+-------+---------+
+| Regno     | Name      | Dept | Address | Fathername | Marks | Subject |
++-----------+-----------+------+---------+------------+-------+---------+
+| 192224050 | Deepshika | IT   | Ongole  | Kalyan     |    91 | PDSD    |
+| 192222019 | Dharika   | Bio  | Hyd     | Uncle      |    80 | BioEvs  |
+| 192224032 | Harini    | CSE  | BZA     | Uncle      |    95 | DBMS    |
+| 192224039 | Lavanya   | CSE  | Ongole  | Srinivas   |    99 | DBMS    |
++-----------+-----------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees group by Marks;
++-----------+-----------+------+---------+------------+-------+---------+
+| Regno     | Name      | Dept | Address | Fathername | Marks | Subject |
++-----------+-----------+------+---------+------------+-------+---------+
+| 192222019 | Dharika   | Bio  | Hyd     | Uncle      |    80 | BioEvs  |
+| 192224050 | Deepshika | IT   | Ongole  | Kalyan     |    91 | PDSD    |
+| 192224032 | Harini    | CSE  | BZA     | Uncle      |    95 | DBMS    |
+| 192224039 | Lavanya   | CSE  | Ongole  | Srinivas   |    99 | DBMS    |
++-----------+-----------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees group by Dept;
++-----------+-----------+------+---------+------------+-------+---------+
+| Regno     | Name      | Dept | Address | Fathername | Marks | Subject |
++-----------+-----------+------+---------+------------+-------+---------+
+| 192222019 | Dharika   | Bio  | Hyd     | Uncle      |    80 | BioEvs  |
+| 192224039 | Lavanya   | CSE  | Ongole  | Srinivas   |    99 | DBMS    |
+| 192224050 | Deepshika | IT   | Ongole  | Kalyan     |    91 | PDSD    |
++-----------+-----------+------+---------+------------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees having Marks>95;
++-----------+---------+------+---------+------------+-------+---------+
+| Regno     | Name    | Dept | Address | Fathername | Marks | Subject |
++-----------+---------+------+---------+------------+-------+---------+
+| 192224039 | Lavanya | CSE  | Ongole  | Srinivas   |    99 | DBMS    |
++-----------+---------+------+---------+------------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql>
