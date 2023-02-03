@@ -1,0 +1,109 @@
+mysql> use saveetha;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| empdept            |
+| employees          |
+| marks_view         |
+| mdept              |
+| mentee             |
+| mentees            |
+| per                |
+| students           |
+| studepartment      |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+-----------+------+---------+------------+-------+---------+
+| Regno     | Name      | Dept | Address | Fathername | Marks | Subject |
++-----------+-----------+------+---------+------------+-------+---------+
+| 192224050 | Deepshika | IT   | Ongole  | Kalyan     |    91 | PDSD    |
+| 192224039 | Lavanya   | CSE  | Ongole  | Srinivas   |    99 | DBMS    |
+| 192222019 | Dharika   | Bio  | Hyd     | Uncle      |    80 | BioEvs  |
+| 192224032 | Harini    | CSE  | BZA     | Uncle      |    95 | DBMS    |
++-----------+-----------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql>  SELECT Name,Marks,CASE WHEN Marks>95 THEN 'Excellent' WHEN Marks>90 THEN 'Good' ELSE 'average' END AS performance FROM mentees;
++-----------+-------+-------------+
+| Name      | Marks | performance |
++-----------+-------+-------------+
+| Deepshika |    91 | Good        |
+| Lavanya   |    99 | Excellent   |
+| Dharika   |    80 | average     |
+| Harini    |    95 | Good        |
++-----------+-------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select Name,Marks,if(Marks>=95,"Excellent marks","Good marks")from mentees;
++-----------+-------+----------------------------------------------+
+| Name      | Marks | if(Marks>=95,"Excellent marks","Good marks") |
++-----------+-------+----------------------------------------------+
+| Deepshika |    91 | Good marks                                   |
+| Lavanya   |    99 | Excellent marks                              |
+| Dharika   |    80 | Good marks                                   |
+| Harini    |    95 | Excellent marks                              |
++-----------+-------+----------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> DELIMITER $$
+mysql> CREATE FUNCTION REPEAR_DEMNO(INC INT)
+    -> RETURNS CHAR(40)
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE INCOME INT;
+    -> SET INCOME=0;
+    -> REPEAT
+    -> SET INCOME=INCOME+INC;
+    -> UNTIL INCOME>4000
+    -> END REPEAT;
+    -> RETURN "INCOME>4000 DETECTED";
+    -> END;
+    -> $$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT REPEAT_DEMNO(3000);$$
++----------------------+
+| REPEAT_DEMNO(3000)   |
++----------------------+
+| INCOME>4000 DETECTED |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT REPEAT_DEMNO(4000);$$
++----------------------+
+| REPEAT_DEMNO(4000)   |
++----------------------+
+| INCOME>4000 DETECTED |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql>  DELIMITER $$
+mysql> CREATE FUNCTION WHILE_DEMNO(VALUE CHAR(1))
+    -> RETURNS CHAR(20)
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE STR CHAR(100);
+    -> DECLARE I INT;
+    -> SET STR='';
+    -> SET I=1;
+    -> LABEL:
+    -> WHILE I<=5 DO
+    -> SET STR =CONCAT(STR,VALUE);
+    -> SET I=I+1;
+    -> END WHILE LABEL;
+    -> RETURN STR;
+    -> END;
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT WHILE_DEMNO('A');$$
++------------------+
+| WHILE_DEMNO('A') |
++------------------+
+| AAAAA            |
++------------------+
+1 row in set (0.00 sec)
